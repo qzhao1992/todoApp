@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/models/task_data.dart';
+
+import '../models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
 
-
-  final Function addTaskCallback;
-  AddTaskScreen(this.addTaskCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +38,24 @@ class AddTaskScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               onChanged: (newText){
                 newTaskTitle = newText;
+                print("what: " + newTaskTitle);
+              },
+              onEditingComplete: (){
+//                FocusScope.of(context).unfocus();
+                Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
+                Navigator.pop(context);
+//                print("what??: " + newTaskTitle);
               },
             ),
             TextButton(
                 child: Text('Add'),
 
                 onPressed: (){
-                  addTaskCallback(newTaskTitle);
+//                  print("?????" + Provider.of<TaskData>(context, listen: false).getTestTask(newTaskTitle));
+                  Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
+//                  print("???");
+
+                  Navigator.pop(context);
                 })
           ],
         ),
