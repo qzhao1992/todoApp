@@ -38,23 +38,22 @@ class AddTaskScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               onChanged: (newText){
                 newTaskTitle = newText;
-                print("what: " + newTaskTitle);
               },
               onEditingComplete: (){
-//                FocusScope.of(context).unfocus();
                 Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
                 Navigator.pop(context);
-//                print("what??: " + newTaskTitle);
               },
             ),
             TextButton(
-                child: Text('Add'),
-
+                child: Text(
+                  'Add', 
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.lightBlueAccent)),
                 onPressed: (){
-//                  print("?????" + Provider.of<TaskData>(context, listen: false).getTestTask(newTaskTitle));
                   Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
-//                  print("???");
-
                   Navigator.pop(context);
                 })
           ],

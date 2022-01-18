@@ -18,11 +18,15 @@ class TasksScreen extends StatelessWidget {
           showModalBottomSheet(
               context: context,
               isScrollControlled: true,
-              builder: (context) => AddTaskScreen(),
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTaskScreen())),
           );
         },
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children:[
           Container(
           padding: EdgeInsets.only(top:60.0, left:30.0, right:30.0, bottom: 30.0),
